@@ -14,14 +14,18 @@ public class NodoCruce {
     private int estacionA;
     private int lineaB;
     private int estacionB;
+    private int lineaC;
+    private int estacionC;
     private int activo;
 
-    public NodoCruce(int posFloyd, int lineaA, int EstacionA, int lineaB, int EstacionB, int activo) {
+    public NodoCruce(int posFloyd, int lineaA, int EstacionA, int lineaB, int EstacionB, int lineaC, int EstacionC, int activo) {
         this.posFloyd = posFloyd;
         this.lineaA = lineaA;
         this.estacionA = EstacionA;
         this.lineaB = lineaB;
         this.estacionB = EstacionB;
+        this.lineaC = lineaC;
+        this.estacionC = EstacionC;
         this.activo = activo;
     }
     
@@ -31,6 +35,8 @@ public class NodoCruce {
         estacionA = 99;
         lineaB = 0;
         estacionB = 99;
+        lineaC = 0;
+        estacionC = 99;
         activo = 0;
     }
 
@@ -72,6 +78,22 @@ public class NodoCruce {
 
     public void setEstacionB(int EstacionB) {
         this.estacionB = EstacionB;
+    }
+    
+    public int getLineaC() {
+        return lineaC;
+    }
+
+    public void setLineaC(int lineaC) {
+        this.lineaC = lineaC;
+    }
+
+    public int getEstacionC() {
+        return estacionC;
+    }
+
+    public void setEstacionC(int EstacionC) {
+        this.estacionC = EstacionC;
     }
 
     public int getActivo() {

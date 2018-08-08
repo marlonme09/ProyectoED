@@ -20,53 +20,65 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Metodos {
-    LinkedList<Estacion> linea1 = new LinkedList<>();
-    LinkedList<Estacion> linea2 = new LinkedList<>();
-    LinkedList<Estacion> linea3 = new LinkedList<>();
-    LinkedList<Estacion> linea4 = new LinkedList<>();
-    LinkedList<Estacion> linea5 = new LinkedList<>();
-    LinkedList<Estacion> linea6 = new LinkedList<>();
-    LinkedList<NodoCruce> nodosCruce = new LinkedList<>();
-    LinkedList<Estacion> trayeOri = new LinkedList<>();
-    LinkedList<NodoCruce> trayeCru = new LinkedList<>();
-    LinkedList<Estacion> trayeDes = new LinkedList<>();
-    int tiempo;
-    int transbordos;
-    
     int[][] MatrizMOriginal = {
-        {0,   1, 99,  2, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {1,   0,  2, 99, 99, 99,  7, 99, 99, 99, 99, 99, 99},
-        {99,  2,  0,  3,  2, 99, 99,  5, 99, 99, 99, 99, 99},
-        {2,  99,  3,  0,  2, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99,  2,  2,  0,  3, 99, 99,  2, 99, 99, 99, 99},
-        {99, 99, 99, 99,  3,  0, 99, 99, 99,  3, 99, 99, 99},
-        {99,  7, 99, 99, 99, 99,  0,  4, 99, 99,  5, 99, 99},
-        {99, 99,  5, 99, 99, 99,  4,  0,  3, 99,  5, 99, 99},
-        {99, 99, 99, 99,  2, 99, 99,  3,  0,  2, 99,  4, 99},
-        {99, 99, 99, 99, 99,  3, 99, 99,  2,  0, 99, 99,  8},
-        {99, 99, 99, 99, 99, 99,  5,  5, 99, 99,  0,  3, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99,  4, 99,  3,  0,  3},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99,  8, 99,  3,  0}
+        {0,   1, 99,  2, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {1,   0,  2,  2, 99, 99,  7, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99,  2,  0,  3,  2, 99, 99,  5, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {2,   2,  3,  0,  2, 99, 99, 99, 99,  3, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99,  2,  2,  0,  3, 99, 99,  2, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99,  3,  0, 99, 99, 99,  3, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99,  7, 99, 99, 99, 99,  0,  4, 99, 99,  3, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99,  5, 99, 99, 99,  4,  0,  3, 99, 99,  2, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99,  2, 99, 99,  3,  0,  2, 99, 99,  2, 99, 99, 99, 99, 99},
+        {99, 99, 99,  3, 99,  3, 99, 99,  2,  0, 99, 99, 99,  4,  3, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99,  3, 99, 99, 99,  0,  3, 99, 99, 99,  2, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99,  2, 99, 99,  3,  0,  2, 99, 99,  3, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99,  2, 99, 99,  2,  0,  1, 99, 99,  2, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99,  4, 99, 99,  1,  0,  2, 99, 99,  4},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99,  3, 99, 99, 99,  2,  0, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99,  2,  3, 99, 99, 99,  0,  3, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,  2, 99, 99,  3,  0,  3},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,  4, 99, 99,  3,  0}
     };
     
     int[][] MatrizM = {};
     int[][] MatrizMTemp = {};
         
     int[][] MatrizT = {
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
-        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99}
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99},
+        {99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99}
     };
+    
+    LinkedList<Estacion> linea1 = new LinkedList<>();
+    LinkedList<Estacion> linea2 = new LinkedList<>();
+    LinkedList<Estacion> linea3 = new LinkedList<>();
+    LinkedList<Estacion> linea4 = new LinkedList<>();
+    LinkedList<Estacion> linea5 = new LinkedList<>();
+    LinkedList<Estacion> linea6 = new LinkedList<>();
+    LinkedList<Estacion> linea7 = new LinkedList<>();
+    LinkedList<Estacion> linea8 = new LinkedList<>();
+    LinkedList<NodoCruce> nodosCruce = new LinkedList<>();
+    LinkedList<Estacion> trayeOri = new LinkedList<>();
+    LinkedList<NodoCruce> trayeCru = new LinkedList<>();
+    LinkedList<Estacion> trayeDes = new LinkedList<>();
+    int tiempo;
+    int transbordos;
     
     /**
      * Esta función se encarga de llamar el método para que se carguen los datos
@@ -91,9 +103,9 @@ public class Metodos {
      * 
      */
     private int[][] CopiarMatriz(int[][] Matriz){
-        int[][] res = new int[13][13];
-        for(int j = 0; j < 13; j++){
-            for(int i = 0; i < 13; i++){
+        int[][] res = new int[18][18];
+        for(int j = 0; j < 18; j++){
+            for(int i = 0; i < 18; i++){
                 res[j][i] = Matriz[j][i];
             }
         }
@@ -173,7 +185,9 @@ public class Metodos {
                 nc.setEstacionA(Integer.parseInt(fila[2]));
                 nc.setLineaB(Integer.parseInt(fila[3]));
                 nc.setEstacionB(Integer.parseInt(fila[4]));
-                nc.setActivo(Integer.parseInt(fila[5]));
+                nc.setLineaC(Integer.parseInt(fila[5]));
+                nc.setEstacionC(Integer.parseInt(fila[6]));
+                nc.setActivo(Integer.parseInt(fila[7]));
                 listaNdCru.add(nc);
             }
         }
@@ -347,14 +361,18 @@ public class Metodos {
         LinkedList<NodoCruce> listaLin = new LinkedList();
         for(Iterator<NodoCruce> itLinea = nodosCruce.iterator(); itLinea.hasNext();){
             NodoCruce tempLinea = itLinea.next();
-            if(tempLinea.getLineaA() == linCru || tempLinea.getLineaB() == linCru){
+            int lineaA = tempLinea.getLineaA();
+            int lineaB = tempLinea.getLineaB();
+            int lineaC = tempLinea.getLineaC();
+            if(tempLinea.getLineaA() == linCru || tempLinea.getLineaB() == linCru || tempLinea.getLineaC() == linCru){
                 listaLin.add(tempLinea);
             }
         }
         for(Iterator<NodoCruce> itEst = listaLin.iterator(); itEst.hasNext();){
             NodoCruce tempEst = itEst.next();
             if((tempEst.getLineaA() == linCru && tempEst.getEstacionA() == estCru) || 
-                    (tempEst.getLineaB() == linCru && tempEst.getEstacionB() == estCru)){
+                    (tempEst.getLineaB() == linCru && tempEst.getEstacionB() == estCru) ||
+                        (tempEst.getLineaC() == linCru && tempEst.getEstacionC() == estCru)){
                 posFloyd = tempEst.getPosFloyd();
             }
         }
@@ -417,6 +435,20 @@ public class Metodos {
                 salida[1] = temp.getNumEstLin();
             }
         }
+        for(Iterator<Estacion> it = linea7.iterator(); it.hasNext();){
+            Estacion temp = it.next();
+            if(temp.getNombreEst().equals(entrada) || PuntoInteres(temp.getPuntosInteres(), entrada)){
+                salida[0] = 7;
+                salida[1] = temp.getNumEstLin();
+            }
+        }
+        for(Iterator<Estacion> it = linea8.iterator(); it.hasNext();){
+            Estacion temp = it.next();
+            if(temp.getNombreEst().equals(entrada) || PuntoInteres(temp.getPuntosInteres(), entrada)){
+                salida[0] = 8;
+                salida[1] = temp.getNumEstLin();
+            }
+        }
         return salida;
     }
     
@@ -434,16 +466,13 @@ public class Metodos {
         nodosCruce.clear();
         System.out.println("Cargando.");
         AgregarEstaciones(linea1, 1);
-        System.out.println("Cargando..");
         AgregarEstaciones(linea2, 2);
-        System.out.println("Cargando...");
         AgregarEstaciones(linea3, 3);
-        System.out.println("Cargando.");
         AgregarEstaciones(linea4, 4);
-        System.out.println("Cargando..");
         AgregarEstaciones(linea5, 5);
-        System.out.println("Cargando...");
         AgregarEstaciones(linea6, 6);
+        AgregarEstaciones(linea7, 7);
+        AgregarEstaciones(linea8, 8);
         AgregarNodoCruce(nodosCruce);
     }
     
@@ -759,12 +788,19 @@ public class Metodos {
         int nodoCruce = BuscarNodoCruce(trayeOri.getFirst().getNumLinea(), trayeOri.getFirst().getNumEstLin());
         if(nodoCruce != 99){
             if(nodosCruce.get(nodoCruce).getLineaA() == trayeCru.get(1).getLineaA() || 
-                    nodosCruce.get(nodoCruce).getLineaA() == trayeCru.get(1).getLineaB()){
+                    nodosCruce.get(nodoCruce).getLineaA() == trayeCru.get(1).getLineaB() ||
+                        nodosCruce.get(nodoCruce).getLineaA() == trayeCru.get(1).getLineaC()){
                 lineaOri = nodosCruce.get(nodoCruce).getLineaA();
             }
             else if(nodosCruce.get(nodoCruce).getLineaB() == trayeCru.get(1).getLineaA() || 
-                    nodosCruce.get(nodoCruce).getLineaB() == trayeCru.get(1).getLineaB()){
+                        nodosCruce.get(nodoCruce).getLineaB() == trayeCru.get(1).getLineaB() ||
+                            nodosCruce.get(nodoCruce).getLineaB() == trayeCru.get(1).getLineaC()){
                 lineaOri = nodosCruce.get(nodoCruce).getLineaB();
+            }
+            else if(nodosCruce.get(nodoCruce).getLineaC() == trayeCru.get(1).getLineaA() || 
+                        nodosCruce.get(nodoCruce).getLineaC() == trayeCru.get(1).getLineaB() ||
+                            nodosCruce.get(nodoCruce).getLineaC() == trayeCru.get(1).getLineaC()){
+                lineaOri = nodosCruce.get(nodoCruce).getLineaC();
             }
         }
         else{
@@ -774,14 +810,15 @@ public class Metodos {
         int lineaDes = trayeDes.getFirst().getNumLinea();
         for(Iterator<NodoCruce> it = trayeCru.iterator(); it.hasNext(); j++){
             NodoCruce tmpCru = it.next();
-            if(tmpCru.getLineaA() == lineaActual || tmpCru.getLineaB() == lineaActual){
+            if(tmpCru.getLineaA() == lineaActual || tmpCru.getLineaB() == lineaActual || tmpCru.getLineaC() == lineaActual){
                 if(j <= (trayeCru.size()-1)){
-                    if(trayeCru.get(j).getLineaA() == lineaActual || trayeCru.get(j).getLineaB() == lineaActual){
+                    if(trayeCru.get(j).getLineaA() == lineaActual || trayeCru.get(j).getLineaB() == lineaActual || trayeCru.get(j).getLineaC() == lineaActual){
                         //Seguir en la misma linea
                         System.out.println("- Seguir en la linea " + lineaActual);
                     }
                     else{
-                        if(tmpCru.getLineaA() == trayeCru.get(j).getLineaA() || tmpCru.getLineaA() == trayeCru.get(j).getLineaB()){
+                        //Comprobacion linea A 
+                        if(tmpCru.getLineaA() == trayeCru.get(j).getLineaA() || tmpCru.getLineaA() == trayeCru.get(j).getLineaB() || tmpCru.getLineaA() == trayeCru.get(j).getLineaC()){
                             lineaActual = tmpCru.getLineaA();
                             LinkedList<Estacion> linTra = TomarLinea(lineaActual);
                             System.out.println("+ Bajar de la estacion " + linTra.get(tmpCru.getEstacionA()).getNombreEst());
@@ -797,7 +834,8 @@ public class Metodos {
                             }
                             transbordos += 1;
                         }
-                        else if(tmpCru.getLineaB() == trayeCru.get(j).getLineaA() || tmpCru.getLineaB() == trayeCru.get(j).getLineaB()){
+                        //Comprobacion linea B
+                        else if(tmpCru.getLineaB() == trayeCru.get(j).getLineaA() || tmpCru.getLineaB() == trayeCru.get(j).getLineaB() || tmpCru.getLineaB() == trayeCru.get(j).getLineaC()){
                             lineaActual = tmpCru.getLineaB();
                             LinkedList<Estacion> linTra = TomarLinea(lineaActual);
                             System.out.println("+ Bajar de la estacion " + linTra.get(tmpCru.getEstacionB()).getNombreEst());
@@ -809,6 +847,23 @@ public class Metodos {
                             else{
                                 System.out.println("\t- Transbordar a linea: " + lineaActual + " con direccion " + 
                                         (tmpCru.getEstacionB() > trayeCru.get(j).getEstacionB() ? 
+                                                linTra.getFirst().getNombreEst() : linTra.getLast().getNombreEst()));
+                            }
+                            transbordos += 1;
+                        }
+                        //Comprobacion linea C
+                        else if(tmpCru.getLineaC() == trayeCru.get(j).getLineaA() || tmpCru.getLineaC() == trayeCru.get(j).getLineaC() || tmpCru.getLineaC() == trayeCru.get(j).getLineaC()){
+                            lineaActual = tmpCru.getLineaC();
+                            LinkedList<Estacion> linTra = TomarLinea(lineaActual);
+                            System.out.println("+ Bajar de la estacion " + linTra.get(tmpCru.getEstacionC()).getNombreEst());
+                            if(tmpCru.getLineaC() == trayeCru.get(j).getLineaA()){
+                                System.out.println("\t- Transbordar a linea: " + lineaActual + " con direccion " + 
+                                        (tmpCru.getEstacionC() > trayeCru.get(j).getEstacionA() ? 
+                                                linTra.getFirst().getNombreEst() : linTra.getLast().getNombreEst()));
+                            }
+                            else{
+                                System.out.println("\t- Transbordar a linea: " + lineaActual + " con direccion " + 
+                                        (tmpCru.getEstacionC() > trayeCru.get(j).getEstacionC() ? 
                                                 linTra.getFirst().getNombreEst() : linTra.getLast().getNombreEst()));
                             }
                             transbordos += 1;
@@ -910,6 +965,12 @@ public class Metodos {
                     Estacion_O_PuntoInteres(lin);
                     break;
                 case 6:
+                    Estacion_O_PuntoInteres(lin);
+                    break;
+                case 7:
+                    Estacion_O_PuntoInteres(lin);
+                    break;
+                case 8:
                     Estacion_O_PuntoInteres(lin);
                     break;
                 default:
@@ -1379,6 +1440,12 @@ public class Metodos {
             case 6:
                 lineaActual = linea6;
                 break;
+            case 7:
+                lineaActual = linea7;
+                break;
+            case 8:
+                lineaActual = linea8;
+                break;
         }
         return lineaActual;
     }
@@ -1631,6 +1698,12 @@ public class Metodos {
                 linea5 = list;
                 break;
             case 6:
+                linea6 = list;
+                break;
+            case 7:
+                linea6 = list;
+                break;
+            case 8:
                 linea6 = list;
                 break;
         }

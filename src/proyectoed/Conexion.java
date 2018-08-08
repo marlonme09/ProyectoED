@@ -20,7 +20,7 @@ public class Conexion {
     
     public Conexion(){
         driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        url = "jdbc:sqlserver://NODO1;databaseName=ProyectoED";
+            url = "jdbc:sqlserver://localhost;databaseName=ProyectoEDv2";
         try{
             Class.forName(driver);
             conex = DriverManager.getConnection(url, "sa", "Qwerty098");
