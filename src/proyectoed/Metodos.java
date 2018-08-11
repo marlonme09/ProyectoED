@@ -833,6 +833,7 @@ public class Metodos {
                                                 linTra.getFirst().getNombreEst() : linTra.getLast().getNombreEst()));
                             }
                             transbordos += 1;
+                            tiempo += 3;
                         }
                         //Comprobacion linea B
                         else if(tmpCru.getLineaB() == trayeCru.get(j).getLineaA() || tmpCru.getLineaB() == trayeCru.get(j).getLineaB() || tmpCru.getLineaB() == trayeCru.get(j).getLineaC()){
@@ -850,6 +851,7 @@ public class Metodos {
                                                 linTra.getFirst().getNombreEst() : linTra.getLast().getNombreEst()));
                             }
                             transbordos += 1;
+                            tiempo += 3;
                         }
                         //Comprobacion linea C
                         else if(tmpCru.getLineaC() == trayeCru.get(j).getLineaA() || tmpCru.getLineaC() == trayeCru.get(j).getLineaC() || tmpCru.getLineaC() == trayeCru.get(j).getLineaC()){
@@ -867,6 +869,7 @@ public class Metodos {
                                                 linTra.getFirst().getNombreEst() : linTra.getLast().getNombreEst()));
                             }
                             transbordos += 1;
+                            tiempo += 3;
                         }
                     }
                 }
@@ -879,6 +882,7 @@ public class Metodos {
                                     (trayeDes.getLast().getNumEstLin() > trayeDes.getFirst().getNumEstLin() ? 
                                         linTra.getFirst().getNombreEst() : linTra.getLast().getNombreEst()));
                         transbordos += 1;
+                        tiempo += 3;
                         }
                     }
                 }
